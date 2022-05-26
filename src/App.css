@@ -1,38 +1,55 @@
+div {
+    position: relative;
+    box-sizing: border-box;
+}
+
 .App {
-  text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.display-word {
+    height: 190px;
+    border: 1px solid rgba(128, 128, 128, 0.43);
+    margin-bottom: 30px;
+    padding: 10px;
+    display: flex;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.periodic-table-tile {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    width: 120px;
+    height: 170px;
+    border: 1px solid grey;
+    margin-right: 9px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.periodic-table-tile-id {
+    font-size: 14px;
+    font-weight: 700;
 }
 
-.App-link {
-  color: #61dafb;
+.periodic-table-tile-mass {
+    text-align: center;
+    font-size: 14px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.periodic-table-tile-name {
+    text-align: center;
+    font-size: 14px;
 }
+
+.periodic-table-tile-abr {
+    text-align: center;
+    font-size: 60px;
+}
+
+.normal-text {
+    line-height: 170px;
+    padding-right: 9px;
+    font-size: 30px;
+}
+
