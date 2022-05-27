@@ -36,7 +36,7 @@ class App extends React.Component {
                                 }
 
                                 return item
-                            }).filter(item => item);
+                            }).filter(item => item !== '');
 
                             let newObj = [...obj];
                             newObj.splice(index, 1, ...newArr);
