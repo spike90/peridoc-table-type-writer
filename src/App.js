@@ -8,13 +8,17 @@ const MAX_CHAR = 16;
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value: '', tiles: []};
+        this.state = {value: '', tiles: [], halfChecked: false};
     }
 
     onChange = event => {
         if (event.target.value.length <= MAX_CHAR) {
             this.setState({value: event.target.value, tiles: this.calculate(event.target.value.split(' '), 0)});
         }
+    };
+
+    checkBoxChange = () => {
+        this.setState({halfChecked: !this.state.halfChecked});
     };
 
     calculate = (obj, minElementIndex) => {
@@ -53,6 +57,11 @@ class App extends React.Component {
         return best;
     };
 
+    getTile = char => {
+        let possibleItems = data.filter(item => item.abr.indexOf(char.toUpperCase()) === 0);
+        return possibleItems[Math.floor(Math.random() * possibleItems.length)];
+    };
+
     compare = (oldObj, newObj) => {
         return oldObj.filter(item => typeof item === 'string').join('').length > newObj.filter(item => typeof item === 'string').join('').length
     };
@@ -61,12 +70,26 @@ class App extends React.Component {
         return (
             <div className="App">
                 <div className="display-word">
-                    {this.state.tiles.map(item => {
+                    {this.state.tiles.map((item, index) => {
                         if (typeof item === 'number') {
-                            return <PrTile obj={data[item]}/>
+                            return <PrTile key={item + index} obj={data[item]}/>
                         }
-                        return <div className="normal-text">{item}</div>
+
+                        return item.split('').map((char, chIndex) => {
+                            if (this.state.halfChecked) {
+                                let tile = this.getTile(char);
+                                if (tile) {
+                                    return <PrTile key={item + index + chIndex} obj={tile} half={true}/>
+                                }
+                            }
+
+                            return <PrTile key={item + index + chIndex} character={char.toUpperCase()}/>
+                        });
                     })}
+                </div>
+                <div className="checkbox-container">
+                    <label htmlFor="checkbox">Fill the letters with 50% matching tiles</label>
+                    <input type="checkbox" id="checkbox" value={this.state.halfChecked} onChange={this.checkBoxChange}/>
                 </div>
                 <p>
                     Start typing (max {MAX_CHAR} character allowed):

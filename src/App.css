@@ -27,9 +27,15 @@ div {
     margin-right: 9px;
 }
 
+.periodic-table-tile.borderless {
+    border: none;
+}
+
 .periodic-table-tile-id {
     font-size: 14px;
     font-weight: 700;
+    line-height: 14px;
+    min-height: 14px;
 }
 
 .periodic-table-tile-mass {
@@ -45,11 +51,21 @@ div {
 .periodic-table-tile-abr {
     text-align: center;
     font-size: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.periodic-table-tile-abr > div {
+    color: #e1e1e1;
+}
+
+.periodic-table-tile-abr > div:nth-child(1) {
+    color: initial;
 }
 
 .normal-text {
     line-height: 170px;
     padding-right: 9px;
-    font-size: 30px;
+    font-size: 60px;
 }
 
